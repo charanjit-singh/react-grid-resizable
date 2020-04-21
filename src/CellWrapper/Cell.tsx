@@ -21,13 +21,14 @@ export const Cell = styled((props: CellProps) => {
     }, []);
 
     return <div 
-        ref       = {props.onRef}
+        ref       = {ref => {props.onRef(ref); props.attributes.ref ? props.attributes.ref(ref)}}
         style     = {{
             height: initialHeight,
             width: initialWidth,
             ...props.style,
         }}
         className = {props.className}
+               {...props.attributes}
     >
         {props.children}
     </div>
